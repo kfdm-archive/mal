@@ -3,14 +3,28 @@
 from sys import argv
 from mal import Mal
 
+DISPLAY_FORMAT = '{:<50} ({:>2}/{:<2}) [{}]'
+
+mal = Mal()
+
 print 'Currently Watching'
-print '-'*80
-for anime in Mal().anime_list(argv[1]).values():
+print '-' * 80
+for anime in mal.anime_list(argv[1]).values():
     if anime.my_status is anime.WATCHING:
-        print '{:<40} ({:>2}/{:<2}) [{}]'.format(
+        print DISPLAY_FORMAT.format(
             anime.title,
             anime.my_watched,
             anime.episodes,
             anime.id
         )
 
+print 'Currently Reading'
+print '-' * 80
+for manga in mal.manga_list(argv[1]).values():
+    if manga.my_status is manga.READING:
+        print DISPLAY_FORMAT.format(
+            manga.title,
+            manga.my_read_chapters,
+            manga.chapters,
+            manga.id
+        )
