@@ -5,8 +5,6 @@ try:
 except ImportError:
 	from distutils.core import setup
 
-import gntp
-
 setup(
 	name='mal',
 	description='MyAnimeList Library in Python',
@@ -23,4 +21,9 @@ setup(
 		'Programming Language :: Python',
 		'Operating System :: OS Independent',
 	],
+	entry_points = {
+		'console_scripts':[
+			'mal = mal.cli:main'
+		]
+	}
 )
