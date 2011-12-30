@@ -3,22 +3,28 @@ from xml.dom.minidom import parseString
 
 
 class Mal(object):
-    def anime_list(self, user):
+    def anime_list(self, user, filter=None):
         r = requests.get('http://myanimelist.net/malappinfo.php?u=%s&type=anime&status=all' % user)
         dom = parseString(r.content.encode('utf8'))
         self.anime = {}
         for anime in dom.getElementsByTagName('anime'):
             anime = Anime(anime)
-            self.anime[anime.id] = anime
+            if not filter:
+                self.anime[anime.id] = anime
+            elif filter and filter == anime.my_status:
+                self.anime[anime.id] = anime
         return self.anime
 
-    def manga_list(self, user):
+    def manga_list(self, user, filter=None):
         r = requests.get('http://myanimelist.net/malappinfo.php?u=%s&type=manga&status=all' % user)
         dom = parseString(r.content.encode('utf8'))
         self.manga = {}
         for manga in dom.getElementsByTagName('manga'):
             manga = Manga(manga)
-            self.manga[manga.id] = manga
+            if not filter:
+                self.manga[manga.id] = manga
+            elif filter and filter == manga.my_status:
+                self.manga[manga.id] = manga
         return self.manga
 
 
