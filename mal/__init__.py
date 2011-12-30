@@ -4,7 +4,7 @@ from xml.dom.minidom import parseString
 
 class Mal(object):
     def anime_list(self, user):
-        r = requests.get('http://myanimelist.net/malappinfo.php?u=%s&type=anime' % user)
+        r = requests.get('http://myanimelist.net/malappinfo.php?u=%s&type=anime&status=all' % user)
         dom = parseString(r.content.encode('utf8'))
         self.anime = {}
         for anime in dom.getElementsByTagName('anime'):
@@ -13,7 +13,7 @@ class Mal(object):
         return self.anime
 
     def manga_list(self, user):
-        r = requests.get('http://myanimelist.net/malappinfo.php?u=%s&type=manga' % user)
+        r = requests.get('http://myanimelist.net/malappinfo.php?u=%s&type=manga&status=all' % user)
         dom = parseString(r.content.encode('utf8'))
         self.manga = {}
         for manga in dom.getElementsByTagName('manga'):
