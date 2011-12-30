@@ -1,5 +1,5 @@
 import requests
-from xml.dom.minidom import parse, parseString
+from xml.dom.minidom import parseString
 
 
 class Mal(object):
@@ -94,7 +94,7 @@ class Manga(Media):
 
         self.my_id = self._getText('my_id')
         self.my_read_chapters = self._getInt('my_read_chapters')
-        self.my_read_voumes = self._getInt('my_read_volumes')
+        self.my_read_volumes = self._getInt('my_read_volumes')
         self.my_start_date = self._getText('my_start_date')
         self.my_finish_date = self._getText('my_finish_date')
         self.my_score = self._getText('my_score')
