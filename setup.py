@@ -24,7 +24,6 @@ setup(
     entry_points={
         'console_scripts': [
             'mal = mal.cli:main',
-            'mal-completed = mal.cli:completed',
         ]
     }
 )
